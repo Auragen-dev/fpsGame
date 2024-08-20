@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjd6k2dni0ktt"]
+
+[ext_resource type="PackedScene" uid="uid://htce236j02rm" path="res://world_environment.tscn" id="1_ie3ib"]
+[ext_resource type="PackedScene" uid="uid://dgkhji64ti1lg" path="res://player/player.tscn" id="2_ftetb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j6u5n"]
+size = Vector2(10, 10)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdvet"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sgugn"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ijifv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yhjqu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8hswq"]
+
+[node name="main" type="Node3D"]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_ie3ib")]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_j6u5n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+physics_material_override = SubResource("PhysicsMaterial_jdvet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_sgugn")
+
+[node name="Box" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9598, 0)
+mesh = SubResource("BoxMesh_ijifv")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Box"]
+physics_material_override = SubResource("PhysicsMaterial_yhjqu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/RigidBody3D"]
+shape = SubResource("BoxShape3D_8hswq")
+
+[node name="Player" parent="." instance=ExtResource("2_ftetb")]

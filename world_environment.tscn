@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://htce236j02rm"]
+
+[ext_resource type="Texture2D" uid="uid://dwg8oeqqig26i" path="res://lonely_road_afternoon_puresky_4k.exr" id="1_c2b4l"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jug7x"]
+panorama = ExtResource("1_c2b4l")
+
+[sub_resource type="Sky" id="Sky_6s8q6"]
+sky_material = SubResource("PanoramaSkyMaterial_jug7x")
+
+[sub_resource type="Environment" id="Environment_nu7k1"]
+background_mode = 2
+sky = SubResource("Sky_6s8q6")
+ambient_light_source = 3
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_858rp"]
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_nu7k1")
+camera_attributes = SubResource("CameraAttributesPhysical_858rp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.66291, -0.742463, 0.096432, -0.692181, 0.656856, 0.299041, -0.285369, 0.131489, -0.949355, 0, 0, 0)
+shadow_enabled = true

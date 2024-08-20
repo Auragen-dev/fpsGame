@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgkhji64ti1lg"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_j5h2i"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ycad5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kf3un"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54586, 3.69919)
+script = ExtResource("1_j5h2i")
+MOUSE_SENSITVITY = 0.25
+CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")
+
+[node name="CollisionBox" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ycad5")
+
+[node name="Mesh" type="MeshInstance3D" parent="CollisionBox"]
+mesh = SubResource("CapsuleMesh_kf3un")
+
+[node name="CameraController" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.515793, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
+fov = 90.3
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="CameraController/Camera3D"]
