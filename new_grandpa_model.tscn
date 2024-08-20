@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://du0yjcwi6mtuh"]
+
+[ext_resource type="PackedScene" uid="uid://bdfrvues6rt3b" path="res://new grandpa model.fbx" id="1_o2cjs"]
+
+[node name="new grandpa model" instance=ExtResource("1_o2cjs")]

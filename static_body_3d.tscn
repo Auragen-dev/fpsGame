@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcpo4qvj6lkhb"]
+
+[ext_resource type="PackedScene" uid="uid://qu7he4eyctui" path="res://Road long.fbx" id="1_wvmwi"]
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="Road long" parent="." instance=ExtResource("1_wvmwi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00778623, 0, -0.0149784)
