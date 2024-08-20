@@ -41,3 +41,4 @@ physics_material_override = SubResource("PhysicsMaterial_yhjqu")
 shape = SubResource("BoxShape3D_8hswq")
 
 [node name="Player" parent="." instance=ExtResource("2_ftetb")]
+MOUSE_SENSITVITY = 1.0
