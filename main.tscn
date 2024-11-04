@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://htce236j02rm" path="res://world_environment.tscn" id="1_ie3ib"]
 [ext_resource type="PackedScene" uid="uid://dgkhji64ti1lg" path="res://player/player.tscn" id="2_ftetb"]
-[ext_resource type="PackedScene" uid="uid://dhkoag6g37bd0" path="res://Alex assets/animation rig.blend" id="3_vo6as"]
+[ext_resource type="PackedScene" uid="uid://o58rl2tka855" path="res://Alex assets/animation rig.glb" id="3_4u2yj"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_j6u5n"]
 size = Vector2(10, 10)
@@ -43,5 +43,5 @@ shape = SubResource("BoxShape3D_8hswq")
 
 [node name="Player" parent="." instance=ExtResource("2_ftetb")]
 
-[node name="animation rig" parent="." instance=ExtResource("3_vo6as")]
-transform = Transform3D(0.528314, 0, 0, 0, 0.66886, 0, 0, 0, 0.528314, -1.68014, 0.617743, -1.53002)
+[node name="animation rig" parent="." instance=ExtResource("3_4u2yj")]
+transform = Transform3D(1.01592, 0, 0, 0, 0.895943, 0, 0, 0, 1, -2.9179, 0.592556, 0.877048)
