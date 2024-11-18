@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjs5pg08acmvm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yhjqu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8hswq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ijifv"]
+
+[sub_resource type="Skin" id="Skin_dgi5v"]
+
+[node name="Block" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9598, 0)
+collision_layer = 4
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_yhjqu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_8hswq")
+
+[node name="Box" type="MeshInstance3D" parent="."]
+gi_mode = 2
+mesh = SubResource("BoxMesh_ijifv")
+skin = SubResource("Skin_dgi5v")
+skeleton = NodePath("../..")

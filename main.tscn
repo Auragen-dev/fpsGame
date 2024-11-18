@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjd6k2dni0ktt"]
+[gd_scene load_steps=14 format=3 uid="uid://bjd6k2dni0ktt"]
 
 [ext_resource type="PackedScene" uid="uid://htce236j02rm" path="res://world_environment.tscn" id="1_ie3ib"]
 [ext_resource type="PackedScene" uid="uid://dgkhji64ti1lg" path="res://player/player.tscn" id="2_ftetb"]
 [ext_resource type="Texture2D" uid="uid://dm5a6lcusju2b" path="res://Lewis Assets/starry_night_sky_dome_8k.hdr" id="2_mvbi3"]
+[ext_resource type="PackedScene" uid="uid://bjs5pg08acmvm" path="res://block.tscn" id="4_2kqri"]
+[ext_resource type="Texture2D" uid="uid://c11wekwflrynu" path="res://icon.svg" id="5_js11g"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qvkn2"]
 panorama = ExtResource("2_mvbi3")
@@ -13,54 +15,59 @@ sky_material = SubResource("PanoramaSkyMaterial_qvkn2")
 [sub_resource type="Environment" id="Environment_2bib6"]
 background_mode = 2
 sky = SubResource("Sky_o7q66")
-ambient_light_color = Color(0.98275, 4.74088e-06, 5.77569e-07, 1)
 ambient_light_energy = 9.25
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.1158
 volumetric_fog_emission_energy = 0.0
 volumetric_fog_gi_inject = 0.23
 volumetric_fog_anisotropy = 0.11
 volumetric_fog_length = 42.44
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_j6u5n"]
-size = Vector2(50, 50)
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdvet"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6lh2r"]
 size = Vector3(50, 1, 50)
 
-[sub_resource type="BoxMesh" id="BoxMesh_ijifv"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_j6u5n"]
+size = Vector2(50, 50)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yhjqu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjpwh"]
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("5_js11g")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8hswq"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_u2qn6"]
+material = SubResource("StandardMaterial3D_pjpwh")
+subdivide_width = 15
+subdivide_depth = 15
 
 [node name="main" type="Node3D"]
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_ie3ib")]
 environment = SubResource("Environment_2bib6")
 
-[node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00245667, -0.0401869, -0.000407219)
-mesh = SubResource("PlaneMesh_j6u5n")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_mask = 6
 physics_material_override = SubResource("PhysicsMaterial_jdvet")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.63419, 0)
 shape = SubResource("BoxShape3D_6lh2r")
 
-[node name="Box" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9598, 0)
-mesh = SubResource("BoxMesh_ijifv")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Box"]
-physics_material_override = SubResource("PhysicsMaterial_yhjqu")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/RigidBody3D"]
-shape = SubResource("BoxShape3D_8hswq")
+[node name="Floor" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_j6u5n")
+skeleton = NodePath("../..")
 
 [node name="Player" parent="." instance=ExtResource("2_ftetb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0333176, 0.870332, 3.69919)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0333176, 1.30797, 3.69919)
+
+[node name="Block" parent="." instance=ExtResource("4_2kqri")]
+transform = Transform3D(0.999999, -0.00141438, -0.000172204, 0.00141424, 0.999999, -0.00081343, 0.000173376, 0.000813181, 1, 0.00364399, 0.607868, -0.400329)
+
+[node name="SoftBody3D" type="SoftBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.966322, -0.251902, 0, 0.257335, 0.945921, -0.0410289, 2.10759, -0.415705)
+mesh = SubResource("PlaneMesh_u2qn6")
+skeleton = NodePath("")
+collision_mask = 7
+simulation_precision = 100
