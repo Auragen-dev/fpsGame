@@ -1,23 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgkhji64ti1lg"]
+[gd_scene load_steps=4 format=3 uid="uid://dgkhji64ti1lg"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_j5h2i"]
+[ext_resource type="PackedScene" uid="uid://bt160e2cdmrqt" path="res://Alex assets/animation rig.blend" id="2_hocth"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dudlh"]
-radius = 1.87
-height = 6.544
+radius = 0.497505
+height = 2.39758
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54586, 3.69919)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00189209, 1.19209e-07, -0.00982523)
 script = ExtResource("1_j5h2i")
 MOUSE_SENSITVITY = 0.25
 CAMERA_CONTROLLER = NodePath("Camera3D")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_dudlh")
+
+[node name="animation rig" parent="." instance=ExtResource("2_hocth")]
+
+[node name="Armature" parent="animation rig" index="0"]
+transform = Transform3D(0.32, 0, 0, 0, 0.352, 0, 0, 0, 0.32, 0, 0, 0)
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.592, 3.50079, 3.938)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90482, 1.09386, 2.4308)
 fov = 90.3
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="Camera3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.39015, 0)
-shape = SubResource("CapsuleShape3D_dudlh")
+[editable path="animation rig"]

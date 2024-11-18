@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://htce236j02rm"]
 
-[ext_resource type="Texture2D" uid="uid://dwg8oeqqig26i" path="res://lonely_road_afternoon_puresky_4k.exr" id="1_c2b4l"]
+[ext_resource type="Texture2D" uid="uid://dwg8oeqqig26i" path="res://Lewis Assets/lonely_road_afternoon_puresky_4k.exr" id="1_c2b4l"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jug7x"]
 panorama = ExtResource("1_c2b4l")
