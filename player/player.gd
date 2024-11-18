@@ -3,19 +3,21 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
 var _mouse_input : bool = false
 var _mouse_rotation : Vector3
 var _rotation_input : float
 var _tilt_input : float
 var _player_rotation: Vector3
 var _camera_rotation: Vector3
+var _lblVelX: Label
+
+@onready var _animation = $"CollisionShape3D/animation rig/AnimationPlayer"
+
 
 @export var MOUSE_SENSITVITY : float
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
 @export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
 @export var CAMERA_CONTROLLER : Camera3D
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -67,8 +69,10 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		
 
 	move_and_slide()

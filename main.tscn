@@ -1,17 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjd6k2dni0ktt"]
+[gd_scene load_steps=9 format=3 uid="uid://bjd6k2dni0ktt"]
 
 [ext_resource type="PackedScene" uid="uid://htce236j02rm" path="res://world_environment.tscn" id="1_ie3ib"]
 [ext_resource type="PackedScene" uid="uid://dgkhji64ti1lg" path="res://player/player.tscn" id="2_ftetb"]
-[ext_resource type="PackedScene" uid="uid://dhkoag6g37bd0" path="res://Alex assets/animation rig.blend" id="3_vo6as"]
-
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_j6u5n"]
-size = Vector2(10, 10)
+size = Vector2(50, 50)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdvet"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_sgugn"]
-size = Vector3(10, 1, 10)
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0xke4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ijifv"]
 
@@ -30,7 +27,7 @@ mesh = SubResource("PlaneMesh_j6u5n")
 physics_material_override = SubResource("PhysicsMaterial_jdvet")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-shape = SubResource("BoxShape3D_sgugn")
+shape = SubResource("WorldBoundaryShape3D_0xke4")
 
 [node name="Box" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9598, 0)
@@ -43,6 +40,3 @@ physics_material_override = SubResource("PhysicsMaterial_yhjqu")
 shape = SubResource("BoxShape3D_8hswq")
 
 [node name="Player" parent="." instance=ExtResource("2_ftetb")]
-
-[node name="animation rig" parent="." instance=ExtResource("3_vo6as")]
-transform = Transform3D(0.528314, 0, 0, 0, 0.66886, 0, 0, 0, 0.528314, -1.68014, 0.617743, -1.53002)
