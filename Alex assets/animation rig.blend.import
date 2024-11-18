@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bt160e2cdmrqt"
-path="res://.godot/imported/animation rig.blend-565cb3eab94187f931ca3ab3f50ff16d.scn"
+path="res://.godot/imported/animation rig.blend-fc4428e1c04e77b8116cb95c30116a53.scn"
 
 [deps]
 
-source_file="res://animation rig.blend"
-dest_files=["res://.godot/imported/animation rig.blend-565cb3eab94187f931ca3ab3f50ff16d.scn"]
+source_file="res://Alex assets/animation rig.blend"
+dest_files=["res://.godot/imported/animation rig.blend-fc4428e1c04e77b8116cb95c30116a53.scn"]
 
 [params]
 

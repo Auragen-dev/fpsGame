@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjd6k2dni0ktt"]
+[gd_scene load_steps=10 format=3 uid="uid://bjd6k2dni0ktt"]
 
 [ext_resource type="PackedScene" uid="uid://htce236j02rm" path="res://world_environment.tscn" id="1_ie3ib"]
 [ext_resource type="PackedScene" uid="uid://dgkhji64ti1lg" path="res://player/player.tscn" id="2_ftetb"]
+[ext_resource type="PackedScene" uid="uid://bt160e2cdmrqt" path="res://Alex assets/animation rig.blend" id="3_3jjah"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_j6u5n"]
 size = Vector2(50, 50)
@@ -40,3 +41,6 @@ physics_material_override = SubResource("PhysicsMaterial_yhjqu")
 shape = SubResource("BoxShape3D_8hswq")
 
 [node name="Player" parent="." instance=ExtResource("2_ftetb")]
+
+[node name="animation rig" parent="." instance=ExtResource("3_3jjah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
