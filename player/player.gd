@@ -9,10 +9,6 @@ var _rotation_input : float
 var _tilt_input : float
 var _player_rotation: Vector3
 var _camera_rotation: Vector3
-var _lblVelX: Label
-
-@onready var _animation = $"CollisionShape3D/animation rig/AnimationPlayer"
-
 
 @export var MOUSE_SENSITVITY : float
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
@@ -32,6 +28,37 @@ func _unhandled_input(event):
 		_rotation_input = -event.relative.x * MOUSE_SENSITVITY
 		_tilt_input = -event.relative.y * MOUSE_SENSITVITY
 		
+
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+		
+	_updateCamera(delta)
+	movement()
+	move_and_slide()
+	
+	
+func movement():
+		# Handle jump.
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir = Input.get_vector("move_l", "move_r", "move_fw", "move_bw")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+		
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+
 func _updateCamera(delta):
 	_mouse_rotation.x += _tilt_input * delta
 	_mouse_rotation.x = clamp(_mouse_rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
@@ -47,32 +74,4 @@ func _updateCamera(delta):
 	
 	_rotation_input = 0.0
 	_tilt_input = 0.0
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-
-	_updateCamera(delta)
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	if Input.is_action_just_pressed("crouch") and is_on_floor():
-		var mesh = get_node("CollisionBox/Mesh")
-		mesh.set
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("move_l", "move_r", "move_fw", "move_bw")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-		
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-		
-
-	move_and_slide()
+	
