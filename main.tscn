@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjd6k2dni0ktt"]
+[gd_scene load_steps=12 format=3 uid="uid://bjd6k2dni0ktt"]
 
 [ext_resource type="PackedScene" uid="uid://htce236j02rm" path="res://world_environment.tscn" id="1_ie3ib"]
 [ext_resource type="PackedScene" uid="uid://dgkhji64ti1lg" path="res://player/player.tscn" id="2_ftetb"]
 [ext_resource type="Texture2D" uid="uid://dm5a6lcusju2b" path="res://Lewis Assets/starry_night_sky_dome_8k.hdr" id="2_mvbi3"]
 [ext_resource type="PackedScene" uid="uid://6d3wiwh675ve" path="res://Alex assets/Level models.blend" id="4_fdwgk"]
+[ext_resource type="PackedScene" uid="uid://fdulp32pw0i6" path="res://Alex assets/flushed slime.blend" id="5_qh70h"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qvkn2"]
 panorama = ExtResource("2_mvbi3")
@@ -48,5 +49,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0333176, 0.870332, 3.69919
 
 [node name="Level models" parent="." instance=ExtResource("4_fdwgk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70024, -0.55824, 3.64908)
+
+[node name="flushed slime" parent="." instance=ExtResource("5_qh70h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.81528, -0.55824, 11.8644)
 
 [editable path="Level models"]
